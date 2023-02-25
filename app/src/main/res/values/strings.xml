@@ -10,6 +10,7 @@
     <string name="app_password_example">******</string>
     <string name="app_login">Login</string>
     <string name="app_create_account">Criar conta</string>
-    <string name="app_retrieve_account">Recuperar conta</string>
+    <string name="app_recover_account">Recuperar conta</string>
+    <string name="app_send">Enviar</string>
 
 </resources>
