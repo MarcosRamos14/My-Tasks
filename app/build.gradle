@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -18,8 +19,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            applicationIdSuffix '.debug'
+        }
         release {
-            minifyEnabled false
+            initWith debug
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -56,4 +63,10 @@ dependencies {
     // Instrumentation test
     androidTestImplementation "androidx.test.ext:junit:$extjunit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // Firebase
+    implementation platform ("com.google.firebase:firebase-bom:$firebasebom_version")
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
 }

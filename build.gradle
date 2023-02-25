@@ -5,9 +5,20 @@ buildscript {
     ext.corektx_version = "1.7.0"
     ext.espresso_version = "3.5.1"
     ext.extjunit_version = "1.1.5"
+    ext.firebasebom_version = "31.2.2"
+    ext.googleservice_version = "4.3.15"
     ext.junit_version = "4.13.2"
     ext.material_version = "1.8.0"
     ext.nav_version = "2.5.3"
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.google.gms:google-services:$googleservice_version"
+    }
 }
 
 plugins {
