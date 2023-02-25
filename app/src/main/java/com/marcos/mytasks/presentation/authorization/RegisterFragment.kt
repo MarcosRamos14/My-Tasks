@@ -1,7 +1,6 @@
 package com.marcos.mytasks.presentation.authorization
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,6 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
         setupListener()
-
     }
 
     private fun setupListener() {
@@ -67,6 +65,7 @@ class RegisterFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+                    Toast.makeText(requireContext(), R.string.app_toast_create, Toast.LENGTH_SHORT).show()
                 } else {
                     binding.progressBar.isVisible = false
                 }

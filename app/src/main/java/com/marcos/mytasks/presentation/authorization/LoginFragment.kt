@@ -41,7 +41,7 @@ class LoginFragment : Fragment() {
             validateData()
         }
         binding.btnRegister.setOnClickListener {
-          findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
         binding.btnRecover.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_recoverAccountFragment)
@@ -58,7 +58,8 @@ class LoginFragment : Fragment() {
                 binding.progressBar.isVisible = true
                 loginUser(email, password)
             } else {
-                Toast.makeText(requireContext(), R.string.app_toast_password, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.app_toast_password, Toast.LENGTH_SHORT)
+                    .show()
             }
 
         } else {

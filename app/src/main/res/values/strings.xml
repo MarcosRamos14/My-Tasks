@@ -14,5 +14,7 @@
     <string name="app_send">Enviar</string>
     <string name="app_toast_email">Informe seu e-mail.</string>
     <string name="app_toast_password">Informe sua senha.</string>
+    <string name="app_toast_recover">Pronto, acabamos de enviar um link para seu e-mail.</string>
+    <string name="app_toast_create">Conta criada com sucesso!</string>
 
 </resources>
