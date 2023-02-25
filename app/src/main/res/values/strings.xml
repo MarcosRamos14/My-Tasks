@@ -12,5 +12,7 @@
     <string name="app_create_account">Criar conta</string>
     <string name="app_recover_account">Recuperar conta</string>
     <string name="app_send">Enviar</string>
+    <string name="app_toast_email">Informe seu e-mail.</string>
+    <string name="app_toast_password">Informe sua senha.</string>
 
 </resources>
