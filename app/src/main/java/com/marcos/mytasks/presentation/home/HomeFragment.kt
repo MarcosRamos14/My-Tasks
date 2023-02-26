@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.marcos.mytasks.R
+import com.google.android.material.tabs.TabLayoutMediator
 import com.marcos.mytasks.databinding.FragmentHomeBinding
+import com.marcos.mytasks.presentation.home.tabs.DoingFragment
+import com.marcos.mytasks.presentation.home.tabs.DoneFragment
+import com.marcos.mytasks.presentation.home.tabs.TodoFragment
 
 class HomeFragment : Fragment() {
 
@@ -25,5 +28,25 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupTabLayout()
+    }
+
+    private fun setupTabLayout() {
+        val adapter = ViewPagerAdapter(requireActivity())
+        binding.viewPager.adapter = adapter
+
+        adapter.addFragment(TodoFragment(), "A Fazer")
+        adapter.addFragment(DoingFragment(), "Fazendo")
+        adapter.addFragment(DoneFragment(), "Feitas")
+
+        binding.viewPager.offscreenPageLimit = adapter.itemCount
+
+        TabLayoutMediator(
+            binding.tabLayout,
+            binding.viewPager
+        ) {
+            tab, position ->
+            tab.text = adapter.getTitle(position)
+        }.attach()
     }
 }
