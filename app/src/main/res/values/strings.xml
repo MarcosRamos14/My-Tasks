@@ -17,4 +17,7 @@
     <string name="app_toast_recover">Pronto, acabamos de enviar um link para seu e-mail.</string>
     <string name="app_toast_create">Conta criada com sucesso!</string>
 
+    <!-- Screen Home -->
+    <string name="home_loading_info">Carregando tarefas…</string>
+
 </resources>
