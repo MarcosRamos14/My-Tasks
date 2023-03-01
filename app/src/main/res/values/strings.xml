@@ -22,6 +22,9 @@
 
     <!-- Screen Home -->
     <string name="home_loading_info">Carregando tarefas…</string>
+    <string name="home_txt_btn_remove">Remover</string>
+    <string name="home_txt_btn_edit">Editar</string>
+    <string name="home_txt_btn_details">Detalhes</string>
 
     <!-- Error Firebase Authentication -->
     <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
