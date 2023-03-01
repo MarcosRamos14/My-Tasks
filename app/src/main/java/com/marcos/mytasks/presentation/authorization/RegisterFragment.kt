@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRegisterBinding
+import com.marcos.mytasks.framework.firebase.FirebaseHelper
 
 class RegisterFragment : Fragment() {
 
@@ -67,6 +68,11 @@ class RegisterFragment : Fragment() {
                     findNavController().navigate(R.id.action_global_homeFragment)
                     Toast.makeText(requireContext(), R.string.app_toast_create, Toast.LENGTH_SHORT).show()
                 } else {
+                    Toast.makeText(
+                        requireContext(),
+                        FirebaseHelper.validError(task.exception?.message ?: ""),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     binding.progressBar.isVisible = false
                 }
             }
