@@ -76,9 +76,30 @@ class DoingFragment : Fragment() {
     private fun initAdapter() {
         binding.recyclerHome.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerHome.setHasFixedSize(true)
-        taskAdapter = TaskAdapter(requireContext(), taskList) { task, int ->
+        taskAdapter = TaskAdapter(requireContext(), taskList) { task, select ->
+            optionSelect(task, select)
         }
         binding.recyclerHome.adapter = taskAdapter
+    }
+
+    private fun optionSelect(task: Task, select: Int) {
+        when (select) {
+            TaskAdapter.SELECT_REMOVE -> {
+                deleteTask(task)
+            }
+        }
+    }
+
+    private fun deleteTask(task: Task) {
+        FirebaseHelper
+            .getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .removeValue()
+
+        taskList.remove(task)
+        taskAdapter.notifyDataSetChanged()
     }
 
     companion object {
