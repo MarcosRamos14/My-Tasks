@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentTodoBinding
 
 class TodoFragment : Fragment() {
@@ -24,5 +26,12 @@ class TodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListener()
+    }
+
+    private fun setupListener() {
+        binding.floatingBtnAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
+        }
     }
 }

@@ -30,4 +30,11 @@
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
 
+    <!-- Form Task -->
+    <string name="form_Task_text_title">Nova tarefa</string>
+    <string name="form_Task_text_task">Tarefa</string>
+    <string name="form_Task_text_status">Status</string>
+    <string name="form_Task_hint_task">Criar nova tela de login</string>
+    <string name="form_task_btn_save">Salvar</string>
+
 </resources>
