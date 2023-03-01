@@ -46,13 +46,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/form_Task_text_task"
+                android:text="@string/form_Task_text_description"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/edit_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"
@@ -72,7 +72,7 @@
                 android:text="@string/form_Task_text_status"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_description" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -84,33 +84,37 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
                 <RadioButton
+                    android:id="@+id/rdo_btn_todo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="true"
                     android:buttonTint="@color/white"
-                    android:text="A Fazer"
+                    android:text="@string/form_task_rdo_btn_todo"
                     android:textColor="@color/white" />
 
                 <RadioButton
+                    android:id="@+id/rdo_btn_doing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:buttonTint="@color/white"
-                    android:text="A Fazer"
+                    android:text="@string/form_task_rdo_btn_doing"
                     android:textColor="@color/white" />
 
                 <RadioButton
+                    android:id="@+id/rdo_btn_done"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:buttonTint="@color/white"
-                    android:text="A Fazer"
+                    android:text="@string/form_task_rdo_btn_done"
                     android:textColor="@color/white" />
 
             </RadioGroup>
 
             <Button
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_button"
@@ -133,7 +137,7 @@
                 android:layout_marginTop="@dimen/_8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_login"
+                app:layout_constraintTop_toBottomOf="@+id/btn_save"
                 tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
