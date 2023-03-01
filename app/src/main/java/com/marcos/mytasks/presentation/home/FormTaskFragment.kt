@@ -62,9 +62,7 @@ class FormTaskFragment : Fragment() {
             saveTask()
         } else {
             Toast.makeText(
-                requireContext(),
-                R.string.generic_error_description,
-                Toast.LENGTH_SHORT
+                requireContext(), R.string.generic_error_description, Toast.LENGTH_SHORT
             ).show()
         }
     }
@@ -78,12 +76,11 @@ class FormTaskFragment : Fragment() {
             .setValue(task)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+
                     if (newTask) { // new task
                         findNavController().popBackStack()
                         Toast.makeText(
-                            requireContext(),
-                            R.string.generic_salve_task_success,
-                            Toast.LENGTH_SHORT
+                            requireContext(), R.string.generic_salve_task_success, Toast.LENGTH_SHORT
                         ).show()
                     } else { // edit task
                         binding.progressBar.isVisible = false
@@ -91,6 +88,7 @@ class FormTaskFragment : Fragment() {
                             requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
                         ).show()
                     }
+
                 } else {
                     Toast.makeText(
                         requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT

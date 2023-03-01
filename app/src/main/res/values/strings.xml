@@ -29,6 +29,8 @@
     <string name="home_txt_btn_remove">Remover</string>
     <string name="home_txt_btn_edit">Editar</string>
     <string name="home_txt_btn_details">Detalhes</string>
+    <string name="home_empty_task">Nenhuma tarefa cadastrada.</string>
+    <string name="home_error_list_task">Erro ao listar tarefa.</string>
 
     <!-- Error Firebase Authentication -->
     <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
