@@ -94,7 +94,40 @@ class DoingFragment : Fragment() {
                     .actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
+            TaskAdapter.SELECT_BACK -> {
+                task.status = STATUS_TASK_TODO
+                updateTask(task)
+            }
+            TaskAdapter.SELECT_NEXT -> {
+                task.status = STATUS_TASK_DONE
+                updateTask(task)
+            }
         }
+    }
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper
+            .getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .setValue(task)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }.addOnFailureListener {
+                binding.progressBar.isVisible = false
+                Toast.makeText(
+                    requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 
     private fun deleteTask(task: Task) {
@@ -110,6 +143,8 @@ class DoingFragment : Fragment() {
     }
 
     companion object {
+        private const val STATUS_TASK_TODO = 0
         private const val STATUS_TASK_DOING = 1
+        private const val STATUS_TASK_DONE = 2
     }
 }
