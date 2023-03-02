@@ -14,8 +14,9 @@ import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentLoginBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
+import com.marcos.mytasks.presentation.utils.BaseFragment
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth
@@ -56,6 +57,7 @@ class LoginFragment : Fragment() {
         if (email.isNotEmpty()) {
 
             if (password.isNotEmpty()) {
+                hideKeyboard()
                 binding.progressBar.isVisible = true
                 loginUser(email, password)
             } else {

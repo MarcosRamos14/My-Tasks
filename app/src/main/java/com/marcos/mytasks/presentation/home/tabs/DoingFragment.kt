@@ -58,12 +58,11 @@ class DoingFragment : Fragment() {
                             if (task.status == STATUS_TASK_DOING) taskList.add(task)
                         }
 
-                        binding.txtInfo.text = ""
                         taskList.reverse()
                         initAdapter()
-                    } else {
-                        binding.txtInfo.text = getString(R.string.home_empty_task)
                     }
+
+                    taskEmpty()
                     binding.progressBar.isVisible = false
                 }
 
@@ -73,6 +72,14 @@ class DoingFragment : Fragment() {
                     ).show()
                 }
             })
+    }
+
+    private fun taskEmpty() {
+        binding.txtInfo.text = if (taskList.isEmpty()) {
+            getString(R.string.home_empty_task)
+        } else {
+            getString(R.string.empty_string)
+        }
     }
 
     private fun initAdapter() {

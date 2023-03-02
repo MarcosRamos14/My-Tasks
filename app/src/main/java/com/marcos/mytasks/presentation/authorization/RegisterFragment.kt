@@ -14,8 +14,10 @@ import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRegisterBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
+import com.marcos.mytasks.presentation.extension.initToolbar
+import com.marcos.mytasks.presentation.utils.BaseFragment
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var auth: FirebaseAuth
@@ -33,6 +35,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(binding.toolbar)
         auth = Firebase.auth
         setupListener()
     }
@@ -50,6 +53,7 @@ class RegisterFragment : Fragment() {
         if (email.isNotEmpty()) {
 
             if (password.isNotEmpty()) {
+                hideKeyboard()
                 binding.progressBar.isVisible = true
                 registerUser(email, password)
             } else {

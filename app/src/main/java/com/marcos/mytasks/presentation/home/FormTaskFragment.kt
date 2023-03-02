@@ -9,12 +9,15 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentFormTaskBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.presentation.extension.initToolbar
+import com.marcos.mytasks.presentation.utils.BaseFragment
 
-class FormTaskFragment : Fragment() {
+class FormTaskFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFormTaskBinding
 
@@ -37,6 +40,7 @@ class FormTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(binding.toolbar)
         setupListener()
         getArgs()
     }
@@ -90,6 +94,7 @@ class FormTaskFragment : Fragment() {
     private fun validateData() {
         val description = binding.editDescription.text.toString().trim()
         if (description.isNotEmpty()) {
+            hideKeyboard()
             binding.progressBar.isVisible = true
 
             if (newTask) task = Task()

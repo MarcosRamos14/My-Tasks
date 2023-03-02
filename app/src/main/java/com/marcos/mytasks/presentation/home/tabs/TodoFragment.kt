@@ -46,7 +46,9 @@ class TodoFragment : Fragment() {
 
     private fun setupListener() {
         binding.floatingBtnAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
+            val action = HomeFragmentDirections
+                .actionHomeFragmentToFormTaskFragment(null)
+            findNavController().navigate(action)
         }
     }
 
@@ -65,12 +67,12 @@ class TodoFragment : Fragment() {
 
                             if (task.status == STATUS_TASK_TODO) taskList.add(task)
                         }
-                        binding.txtInfo.text = ""
+
                         taskList.reverse()
                         initAdapter()
-                    } else {
-                        binding.txtInfo.text = getString(R.string.home_empty_task)
                     }
+
+                    taskEmpty()
                     binding.progressBar.isVisible = false
                 }
 
@@ -82,6 +84,14 @@ class TodoFragment : Fragment() {
                     ).show()
                 }
             })
+    }
+
+    private fun taskEmpty() {
+        binding.txtInfo.text = if (taskList.isEmpty()) {
+            getString(R.string.home_empty_task)
+        } else {
+            getString(R.string.empty_string)
+        }
     }
 
     private fun initAdapter() {
