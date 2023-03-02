@@ -16,14 +16,6 @@ class TaskAdapter(
     val taskSelected: (Task, Int) -> Unit
 ) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
-    companion object {
-        val SELECT_BACK: Int = 1
-        val SELECT_REMOVE: Int = 2
-        val SELECT_EDIT: Int = 3
-        val SELECT_DETAILS: Int = 4
-        val SELECT_NEXT: Int = 5
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
             ItemAdapterBinding.inflate(
@@ -38,21 +30,18 @@ class TaskAdapter(
         val task = taskList[position]
 
         holder.binding.txtTitle.text = task.description
-
         holder.binding.btnDelete.setOnClickListener {
             taskSelected(task, SELECT_REMOVE)
         }
-
         holder.binding.btnEdit.setOnClickListener {
             taskSelected(task, SELECT_EDIT)
         }
-
         holder.binding.btnDetails.setOnClickListener {
             taskSelected(task, SELECT_DETAILS)
         }
 
         when (task.status) {
-            0 -> {
+            STATUS_TASK_TODO -> {
                 holder.binding.imgBtnBack.isVisible = false
                 holder.binding.imgBtnNext.setColorFilter(
                     ContextCompat.getColor(context, R.color.mr_color_doing)
@@ -61,7 +50,7 @@ class TaskAdapter(
                     taskSelected(task, SELECT_NEXT)
                 }
             }
-            1 -> {
+            STATUS_TASK_DOING -> {
                 holder.binding.imgBtnBack.setColorFilter(
                     ContextCompat.getColor(context, R.color.mr_color_todo)
                 )
@@ -91,4 +80,14 @@ class TaskAdapter(
 
     inner class MyViewHolder(val binding: ItemAdapterBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    companion object {
+        val SELECT_BACK: Int = 1
+        val SELECT_REMOVE: Int = 2
+        val SELECT_EDIT: Int = 3
+        val SELECT_DETAILS: Int = 4
+        val SELECT_NEXT: Int = 5
+        private const val STATUS_TASK_TODO = 0
+        private const val STATUS_TASK_DOING = 1
+    }
 }

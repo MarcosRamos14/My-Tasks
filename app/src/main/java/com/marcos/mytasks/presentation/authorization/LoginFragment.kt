@@ -1,11 +1,9 @@
 package com.marcos.mytasks.presentation.authorization
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentLoginBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
+import com.marcos.mytasks.presentation.extension.showBottomSheet
 import com.marcos.mytasks.presentation.utils.BaseFragment
 
 class LoginFragment : BaseFragment() {
@@ -60,14 +59,9 @@ class LoginFragment : BaseFragment() {
                 hideKeyboard()
                 binding.progressBar.isVisible = true
                 loginUser(email, password)
-            } else {
-                Toast.makeText(requireContext(), R.string.app_toast_password, Toast.LENGTH_SHORT)
-                    .show()
-            }
+            } else showBottomSheet(message = R.string.app_message_password)
 
-        } else {
-            Toast.makeText(requireContext(), R.string.app_toast_email, Toast.LENGTH_SHORT).show()
-        }
+        } else showBottomSheet(message = R.string.app_message_email)
     }
 
     private fun loginUser(email: String, password: String) {
@@ -76,11 +70,9 @@ class LoginFragment : BaseFragment() {
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        FirebaseHelper.validError(task.exception?.message ?: ""),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(
+                        message = FirebaseHelper.validError(task.exception?.message ?: "")
+                    )
                     binding.progressBar.isVisible = false
                 }
             }

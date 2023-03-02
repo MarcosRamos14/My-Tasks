@@ -13,8 +13,6 @@ class FirebaseHelper {
 
         fun getIdUser() = getAuth().uid
 
-        fun isAutenticated() = getAuth().currentUser != null
-
         fun validError(error: String) : Int {
             return when {
                 error.contains("There is no user record corresponding to this identifier") -> {
@@ -38,5 +36,4 @@ class FirebaseHelper {
             }
         }
     }
-
 }

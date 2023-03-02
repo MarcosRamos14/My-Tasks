@@ -16,15 +16,14 @@ import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentDoingBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.presentation.extension.showBottomSheet
 import com.marcos.mytasks.presentation.home.HomeFragmentDirections
 import com.marcos.mytasks.presentation.home.TaskAdapter
 
 class DoingFragment : Fragment() {
 
     private lateinit var binding: FragmentDoingBinding
-
     private val taskList = mutableListOf<Task>()
-
     private lateinit var taskAdapter: TaskAdapter
 
     override fun onCreateView(
@@ -46,8 +45,8 @@ class DoingFragment : Fragment() {
     private fun getTask() {
         FirebaseHelper
             .getDatabase()
-            .child("task")
-            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(getString(R.string.form_task))
+            .child(FirebaseHelper.getIdUser() ?: getString(R.string.empty_string))
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -67,9 +66,7 @@ class DoingFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(
-                        requireContext(), R.string.home_error_list_task, Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(message = R.string.home_error_list_task)
                 }
             })
     }
@@ -77,9 +74,7 @@ class DoingFragment : Fragment() {
     private fun taskEmpty() {
         binding.txtInfo.text = if (taskList.isEmpty()) {
             getString(R.string.home_empty_task)
-        } else {
-            getString(R.string.empty_string)
-        }
+        } else getString(R.string.empty_string)
     }
 
     private fun initAdapter() {
@@ -97,8 +92,7 @@ class DoingFragment : Fragment() {
                 deleteTask(task)
             }
             TaskAdapter.SELECT_EDIT -> {
-                val action = HomeFragmentDirections
-                    .actionHomeFragmentToFormTaskFragment(task)
+                val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
             TaskAdapter.SELECT_BACK -> {
@@ -124,16 +118,11 @@ class DoingFragment : Fragment() {
                     Toast.makeText(
                         requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
                     ).show()
-                } else {
-                    Toast.makeText(
-                        requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
-                    ).show()
-                }
+                } else showBottomSheet(message = R.string.generic_salve_task_error)
+
             }.addOnFailureListener {
                 binding.progressBar.isVisible = false
-                Toast.makeText(
-                    requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
-                ).show()
+                showBottomSheet(message = R.string.generic_salve_task_error)
             }
     }
 

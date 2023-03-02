@@ -16,24 +16,23 @@ import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentDoneBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.presentation.extension.showBottomSheet
 import com.marcos.mytasks.presentation.home.HomeFragmentDirections
 import com.marcos.mytasks.presentation.home.TaskAdapter
 
 class DoneFragment : Fragment() {
 
     private lateinit var binding: FragmentDoneBinding
-
     private val taskList = mutableListOf<Task>()
-
     private lateinit var taskAdapter: TaskAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = FragmentDoneBinding.inflate(
-    inflater,
-    container,
-    false
+        inflater,
+        container,
+        false
     ).apply {
         binding = this
     }.root
@@ -46,8 +45,8 @@ class DoneFragment : Fragment() {
     private fun getTask() {
         FirebaseHelper
             .getDatabase()
-            .child("task")
-            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(getString(R.string.form_task))
+            .child(FirebaseHelper.getIdUser() ?: getString(R.string.empty_string))
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -67,9 +66,7 @@ class DoneFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(
-                        requireContext(), R.string.home_error_list_task, Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(message = R.string.home_error_list_task)
                 }
             })
     }
@@ -77,9 +74,7 @@ class DoneFragment : Fragment() {
     private fun taskEmpty() {
         binding.txtInfo.text = if (taskList.isEmpty()) {
             getString(R.string.home_empty_task)
-        } else {
-            getString(R.string.empty_string)
-        }
+        } else getString(R.string.empty_string)
     }
 
     private fun initAdapter() {
@@ -93,9 +88,7 @@ class DoneFragment : Fragment() {
 
     private fun optionSelect(task: Task, select: Int) {
         when (select) {
-            TaskAdapter.SELECT_REMOVE -> {
-                deleteTask(task)
-            }
+            TaskAdapter.SELECT_REMOVE -> deleteTask(task)
             TaskAdapter.SELECT_EDIT -> {
                 val action = HomeFragmentDirections
                     .actionHomeFragmentToFormTaskFragment(task)
@@ -111,8 +104,8 @@ class DoneFragment : Fragment() {
     private fun updateTask(task: Task) {
         FirebaseHelper
             .getDatabase()
-            .child("task")
-            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(getString(R.string.form_task))
+            .child(FirebaseHelper.getIdUser() ?: getString(R.string.empty_string))
             .child(task.id)
             .setValue(task)
             .addOnCompleteListener { task ->
@@ -120,24 +113,19 @@ class DoneFragment : Fragment() {
                     Toast.makeText(
                         requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
                     ).show()
-                } else {
-                    Toast.makeText(
-                        requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
-                    ).show()
-                }
+                } else showBottomSheet(message = R.string.generic_salve_task_error)
+
             }.addOnFailureListener {
                 binding.progressBar.isVisible = false
-                Toast.makeText(
-                    requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
-                ).show()
+                showBottomSheet(message = R.string.generic_salve_task_error)
             }
     }
 
     private fun deleteTask(task: Task) {
         FirebaseHelper
             .getDatabase()
-            .child("task")
-            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(getString(R.string.form_task))
+            .child(FirebaseHelper.getIdUser() ?: getString(R.string.empty_string))
             .child(task.id)
             .removeValue()
 

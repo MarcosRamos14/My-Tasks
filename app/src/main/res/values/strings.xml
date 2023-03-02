@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">My Tasks</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="empty_string"> </string>
+
+
 
     <!-- Generics -->
+    <string name="empty_string"> </string>
     <string name="generic_error">Ocorreu um erro. Por favor, tente novamente mais tarde!</string>
     <string name="generic_error_description">Informe uma descrição para a tarefa.</string>
     <string name="generic_salve_task_error">Erro ao salvar a tarefa.</string>
@@ -19,9 +20,9 @@
     <string name="app_create_account">Criar conta</string>
     <string name="app_recover_account">Recuperar conta</string>
     <string name="app_send">Enviar</string>
-    <string name="app_toast_email">Informe seu e-mail.</string>
-    <string name="app_toast_password">Informe sua senha.</string>
-    <string name="app_toast_recover">Pronto, acabamos de enviar um link para seu e-mail.</string>
+    <string name="app_message_email">Informe seu e-mail.</string>
+    <string name="app_message_password">Informe sua senha.</string>
+    <string name="app_message_recover">Pronto, acabamos de enviar um link para seu e-mail.</string>
     <string name="app_toast_create">Conta criada com sucesso!</string>
 
     <!-- Screen Home -->
@@ -46,14 +47,13 @@
     <string name="form_task_text_status">Status</string>
     <string name="form_task_hint_task">Criar nova tela de login</string>
     <string name="form_task_btn_save">Salvar</string>
-    <string name="form_task_rdo_btn_todo">A Fazer</string>
-    <string name="form_task_rdo_btn_doing">Fazendo</string>
-    <string name="form_task_rdo_btn_done">Feitas</string>
+    <string name="form_task_todo">A Fazer</string>
+    <string name="form_task_doing">Fazendo</string>
+    <string name="form_task_done">Feitas</string>
+    <string name="form_task">task</string>
 
-<!--    Todo Fragment-->
-
-<!--    Doing Fragment -->
-
-<!--    Done Fragment-->
+    <!--    BottomSheet-->
+    <string name="bottom_sheet_text_title">Atenção</string>
+    <string name="bottom_sheet_text_button">Entendi</string>
 
 </resources>

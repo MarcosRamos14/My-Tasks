@@ -38,13 +38,10 @@ class SplashFragment : Fragment() {
         auth = Firebase.auth
         if (auth.currentUser == null) {
             findNavController().navigate(R.id.action_splashFragment_to_authentication)
-        } else {
-            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-        }
+        } else findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
     }
 
     companion object {
         private const val TIME = 3000L
     }
-
 }

@@ -1,7 +1,6 @@
 package com.marcos.mytasks.presentation.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +8,18 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentFormTaskBinding
-import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.presentation.extension.initToolbar
+import com.marcos.mytasks.presentation.extension.showBottomSheet
 import com.marcos.mytasks.presentation.utils.BaseFragment
 
 class FormTaskFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFormTaskBinding
-
     private val args: FormTaskFragmentArgs by navArgs()
-
     private lateinit var task: Task
     private var newTask: Boolean = true
     private var statusTask: Int = STATUS_TASK_TODO
@@ -65,15 +62,9 @@ class FormTaskFragment : BaseFragment() {
     private fun setStatus() {
         binding.radioGroup.check(
             when (task.status) {
-                STATUS_TASK_TODO -> {
-                    R.id.rdo_btn_todo
-                }
-                STATUS_TASK_DOING -> {
-                    R.id.rdo_btn_doing
-                }
-                else -> {
-                    R.id.rdo_btn_done
-                }
+                STATUS_TASK_TODO -> R.id.rdo_btn_todo
+                STATUS_TASK_DOING -> R.id.rdo_btn_doing
+                else -> R.id.rdo_btn_done
             }
         )
     }
@@ -102,24 +93,20 @@ class FormTaskFragment : BaseFragment() {
             task.status = statusTask
 
             saveTask()
-        } else {
-            Toast.makeText(
-                requireContext(), R.string.generic_error_description, Toast.LENGTH_SHORT
-            ).show()
-        }
+        } else showBottomSheet(message = R.string.generic_error_description)
     }
 
     private fun saveTask() {
         FirebaseHelper
             .getDatabase()
-            .child("task")
-            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(getString(R.string.form_task))
+            .child(FirebaseHelper.getIdUser() ?: getString(R.string.empty_string))
             .child(task.id)
             .setValue(task)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    if (newTask) { // new task
+                    if (newTask) {
                         findNavController().popBackStack()
                         Toast.makeText(
                             requireContext(), R.string.generic_salve_task_success, Toast.LENGTH_SHORT
@@ -130,17 +117,11 @@ class FormTaskFragment : BaseFragment() {
                             requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
                         ).show()
                     }
+                } else showBottomSheet(message = R.string.generic_salve_task_error)
 
-                } else {
-                    Toast.makeText(
-                        requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
-                    ).show()
-                }
             }.addOnFailureListener {
                 binding.progressBar.isVisible = false
-                Toast.makeText(
-                    requireContext(), R.string.generic_salve_task_error, Toast.LENGTH_SHORT
-                ).show()
+                showBottomSheet(message = R.string.generic_salve_task_error)
             }
     }
 

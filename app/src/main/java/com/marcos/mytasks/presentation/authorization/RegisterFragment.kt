@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -15,6 +14,7 @@ import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRegisterBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.presentation.extension.initToolbar
+import com.marcos.mytasks.presentation.extension.showBottomSheet
 import com.marcos.mytasks.presentation.utils.BaseFragment
 
 class RegisterFragment : BaseFragment() {
@@ -56,13 +56,9 @@ class RegisterFragment : BaseFragment() {
                 hideKeyboard()
                 binding.progressBar.isVisible = true
                 registerUser(email, password)
-            } else {
-                Toast.makeText(requireContext(), R.string.app_toast_password, Toast.LENGTH_SHORT).show()
-            }
+            } else showBottomSheet(message = R.string.app_message_password)
 
-        } else {
-            Toast.makeText(requireContext(), R.string.app_toast_email, Toast.LENGTH_SHORT).show()
-        }
+        } else showBottomSheet(message = R.string.app_message_email)
     }
 
     private fun registerUser(email: String, password: String) {
@@ -70,13 +66,12 @@ class RegisterFragment : BaseFragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_global_homeFragment)
-                    Toast.makeText(requireContext(), R.string.app_toast_create, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.app_toast_create, Toast.LENGTH_SHORT)
+                        .show()
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        FirebaseHelper.validError(task.exception?.message ?: ""),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(
+                        message = FirebaseHelper.validError(task.exception?.message ?: "")
+                    )
                     binding.progressBar.isVisible = false
                 }
             }
