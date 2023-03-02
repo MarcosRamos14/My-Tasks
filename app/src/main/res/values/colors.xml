@@ -10,4 +10,13 @@
 
     <!-- my colors -->
     <color name="mr_color_default">#03B6FC</color>
+
+    <color name="mr_color_delete">#FF4C3B</color>
+    <color name="mr_color_edit">#03B6FC</color>
+    <color name="mr_color_details">#04D5C1</color>
+
+    <color name="mr_color_todo">#FF7803</color>
+    <color name="mr_color_doing">#03B6FC</color>
+    <color name="mr_color_done">#04D5C1</color>
+
 </resources>

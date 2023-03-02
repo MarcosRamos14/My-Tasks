@@ -1,11 +1,9 @@
 package com.marcos.mytasks.presentation.authorization
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -13,8 +11,11 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentLoginBinding
+import com.marcos.mytasks.framework.firebase.FirebaseHelper
+import com.marcos.mytasks.presentation.extension.showBottomSheet
+import com.marcos.mytasks.presentation.utils.BaseFragment
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth
@@ -55,24 +56,23 @@ class LoginFragment : Fragment() {
         if (email.isNotEmpty()) {
 
             if (password.isNotEmpty()) {
+                hideKeyboard()
                 binding.progressBar.isVisible = true
                 loginUser(email, password)
-            } else {
-                Toast.makeText(requireContext(), R.string.app_toast_password, Toast.LENGTH_SHORT)
-                    .show()
-            }
+            } else showBottomSheet(message = R.string.app_message_password)
 
-        } else {
-            Toast.makeText(requireContext(), R.string.app_toast_email, Toast.LENGTH_SHORT).show()
-        }
+        } else showBottomSheet(message = R.string.app_message_email)
     }
 
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
+                    showBottomSheet(
+                        message = FirebaseHelper.validError(task.exception?.message ?: "")
+                    )
                     binding.progressBar.isVisible = false
                 }
             }
