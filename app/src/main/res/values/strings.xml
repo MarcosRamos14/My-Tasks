@@ -40,10 +40,11 @@
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
 
     <!-- Form Task -->
-    <string name="form_Task_text_title">Nova tarefa</string>
-    <string name="form_Task_text_description">Descrição</string>
-    <string name="form_Task_text_status">Status</string>
-    <string name="form_Task_hint_task">Criar nova tela de login</string>
+    <string name="form_task_txt_title_new">Nova tarefa</string>
+    <string name="form_task_txt_title_edit">Editar tarefa</string>
+    <string name="form_task_text_description">Descrição</string>
+    <string name="form_task_text_status">Status</string>
+    <string name="form_task_hint_task">Criar nova tela de login</string>
     <string name="form_task_btn_save">Salvar</string>
     <string name="form_task_rdo_btn_todo">A Fazer</string>
     <string name="form_task_rdo_btn_doing">Fazendo</string>

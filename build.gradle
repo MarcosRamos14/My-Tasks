@@ -18,6 +18,7 @@ buildscript {
 
     dependencies {
         classpath "com.google.gms:google-services:$googleservice_version"
+        classpath"androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 

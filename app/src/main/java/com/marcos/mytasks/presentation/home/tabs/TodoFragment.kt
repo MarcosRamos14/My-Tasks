@@ -15,7 +15,8 @@ import com.google.firebase.database.ValueEventListener
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentTodoBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.model.Task
+import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.presentation.home.HomeFragmentDirections
 import com.marcos.mytasks.presentation.home.TaskAdapter
 
 class TodoFragment : Fragment() {
@@ -96,6 +97,11 @@ class TodoFragment : Fragment() {
         when (select) {
             TaskAdapter.SELECT_REMOVE -> {
                 deleteTask(task)
+            }
+            TaskAdapter.SELECT_EDIT -> {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToFormTaskFragment(task)
+                findNavController().navigate(action)
             }
         }
     }

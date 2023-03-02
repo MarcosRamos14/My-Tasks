@@ -1,4 +1,4 @@
-package com.marcos.mytasks.model
+package com.marcos.mytasks.domain.model
 
 import android.os.Parcelable
 import com.marcos.mytasks.framework.firebase.FirebaseHelper

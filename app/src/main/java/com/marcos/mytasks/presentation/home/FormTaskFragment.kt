@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentFormTaskBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.model.Task
+import com.marcos.mytasks.domain.model.Task
 
 class FormTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentFormTaskBinding
+
+    private val args: FormTaskFragmentArgs by navArgs()
 
     private lateinit var task: Task
     private var newTask: Boolean = true
@@ -35,6 +38,40 @@ class FormTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
+        getArgs()
+    }
+
+    private fun getArgs() {
+        args.task.let {
+            if (it != null) {
+                task = it
+                configTask()
+            }
+        }
+    }
+
+    private fun configTask() {
+        newTask = false
+        statusTask = task.status
+        binding.txtToolbar.text = getString(R.string.form_task_txt_title_edit)
+        binding.editDescription.setText(task.description)
+        setStatus()
+    }
+
+    private fun setStatus() {
+        binding.radioGroup.check(
+            when (task.status) {
+                STATUS_TASK_TODO -> {
+                    R.id.rdo_btn_todo
+                }
+                STATUS_TASK_DOING -> {
+                    R.id.rdo_btn_doing
+                }
+                else -> {
+                    R.id.rdo_btn_done
+                }
+            }
+        )
     }
 
     private fun setupListener() {

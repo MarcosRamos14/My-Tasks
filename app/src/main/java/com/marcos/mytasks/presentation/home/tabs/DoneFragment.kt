@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,7 +15,8 @@ import com.google.firebase.database.ValueEventListener
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentDoneBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.model.Task
+import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.presentation.home.HomeFragmentDirections
 import com.marcos.mytasks.presentation.home.TaskAdapter
 
 class DoneFragment : Fragment() {
@@ -86,6 +88,11 @@ class DoneFragment : Fragment() {
         when (select) {
             TaskAdapter.SELECT_REMOVE -> {
                 deleteTask(task)
+            }
+            TaskAdapter.SELECT_EDIT -> {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToFormTaskFragment(task)
+                findNavController().navigate(action)
             }
         }
     }

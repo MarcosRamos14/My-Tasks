@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.ItemAdapterBinding
-import com.marcos.mytasks.model.Task
+import com.marcos.mytasks.domain.model.Task
 
 class TaskAdapter(
     private val context: Context,
