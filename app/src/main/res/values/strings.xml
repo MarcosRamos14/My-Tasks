@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">My Tasks</string>
 
-
-
     <!-- Generics -->
     <string name="empty_string"> </string>
     <string name="generic_error">Ocorreu um erro. Por favor, tente novamente mais tarde!</string>
@@ -10,6 +8,7 @@
     <string name="generic_salve_task_error">Erro ao salvar a tarefa.</string>
     <string name="generic_salve_task_success">Tarefa salva com sucesso!</string>
     <string name="generic_att_task_success">Tarefa atualizada com sucesso!</string>
+    <string name="generic_description">Este texto serve como exemplo</string>
 
     <!-- App Authorization -->
     <string name="app_email">E-mail</string>
@@ -52,8 +51,8 @@
     <string name="form_task_done">Feitas</string>
     <string name="form_task">task</string>
 
-    <!--    BottomSheet-->
-    <string name="bottom_sheet_text_title">Atenção</string>
-    <string name="bottom_sheet_text_button">Entendi</string>
+    <!--    Sheet Dialog-->
+    <string name="sheet_dialog_text_title_warning">Atenção</string>
+    <string name="sheet_dialog_text_button_warning">Entendi</string>
 
 </resources>
