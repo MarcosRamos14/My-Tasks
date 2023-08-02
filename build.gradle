@@ -1,24 +1,46 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.appcompat_version = "1.6.1"
-    ext.constraintlayout_version = "2.1.4"
-    ext.corektx_version = "1.7.0"
-    ext.espresso_version = "3.5.1"
-    ext.extjunit_version = "1.1.5"
-    ext.firebasebom_version = "31.2.2"
-    ext.googleservice_version = "4.3.15"
-    ext.junit_version = "4.13.2"
-    ext.material_version = "1.8.0"
-    ext.nav_version = "2.5.3"
-
+    ext {
+        android_appcompat = "1.6.1"
+        android_build_gradle = "7.4.2"
+        android_constraint_layout = "2.1.4"
+        android_core_ktx = "1.9.0"
+        android_dagger_hilt = "2.44"
+        android_design_support = "22.2.1"
+        android_legacy_support = "1.0.0"
+        android_lifecycle = "2.5.1"
+        android_navigation = "2.5.3"
+        android_room_database = "2.4.3"
+        github_glide = "4.12.0"
+        google_firebase_bom = "31.2.2"
+        google_gson = "2.9.0"
+        google_material_design = "1.8.0"
+        google_service_version = "4.3.15"
+        jetbrains_kotlin = "1.7.10"
+        jetbrains_kotlin_coroutines = "1.6.4"
+        squareup_mock_web_server = "4.10.0"
+        squareup_ok_http = "4.9.0"
+        squareup_retrofit = "2.9.0"
+        test_arch_core = "2.1.0"
+        test_espresso = "3.5.1"
+        test_fragment = "1.5.3"
+        test_junit = "4.13.2"
+        test_junit_ext = "1.1.5"
+        test_mockito = "2.2.0"
+        test_orchestrator = "1.4.1"
+        test_runner = "1.4.0"
+    }
     repositories {
         google()
         mavenCentral()
     }
-
     dependencies {
-        classpath "com.google.gms:google-services:$googleservice_version"
-        classpath"androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath "com.google.gms:google-services:$google_service_version"
+        classpath "com.android.tools.build:gradle:$android_build_gradle"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$jetbrains_kotlin"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$android_dagger_hilt"
+        classpath"androidx.navigation:navigation-safe-args-gradle-plugin:$android_navigation"
+        classpath "com.android.support:design:$android_design_support"
     }
 }
 
