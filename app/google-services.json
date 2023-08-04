@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "185767582407",
+    "firebase_url": "https://my-tasks-1f196-default-rtdb.firebaseio.com",
     "project_id": "my-tasks-1f196",
     "storage_bucket": "my-tasks-1f196.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185767582407:android:f44b561139fe1c435cbce2",
+        "android_client_info": {
+          "package_name": "com.marcos.mytasks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185767582407-5e2ckjcv6d20ildngjdqc9u86qupshif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx-6pRsGCNnwIAo2b5yPJFVm8QwP7zpnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185767582407-5e2ckjcv6d20ildngjdqc9u86qupshif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:185767582407:android:7d07d5b40be9dc6c5cbce2",
