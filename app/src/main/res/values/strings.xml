@@ -11,13 +11,17 @@
     <string name="generic_description">Este texto serve como exemplo</string>
 
     <!-- App Authorization -->
+    <string name="app_text_sign_in">Vamos começar ?</string>
+    <string name="app_text_welcome">Oi! Bem-vindo de volta, você fez falta</string>
     <string name="app_email">E-mail</string>
     <string name="app_password">Senha</string>
-    <string name="app_email_example">email@email.com</string>
-    <string name="app_password_example">******</string>
-    <string name="app_login">Login</string>
+    <string name="app_email_example">exemplo@gmail.com</string>
+    <string name="app_password_example">**********</string>
+    <string name="app_login">Entrar</string>
+    <string name="app_login_alternative">Ou entre com</string>
+    <string name="app_no_account">Você não tem cadastro ?</string>
     <string name="app_create_account">Criar conta</string>
-    <string name="app_recover_account">Recuperar conta</string>
+    <string name="app_recover_account">Esqueci minha senha</string>
     <string name="app_send">Enviar</string>
     <string name="app_message_email">Informe seu e-mail.</string>
     <string name="app_message_password">Informe sua senha.</string>
