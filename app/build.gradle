@@ -8,9 +8,22 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     namespace 'com.marcos.mytasks'
     compileSdk 33
+
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
 
     defaultConfig {
         applicationId "com.marcos.mytasks"
@@ -24,11 +37,11 @@ android {
 
     buildTypes {
         debug {
-            debuggable true
             applicationIdSuffix '.debug'
+            debuggable true
         }
         release {
-            initWith debug
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -44,7 +57,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 }
 
 dependencies {
