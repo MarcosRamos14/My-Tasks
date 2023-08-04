@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.home.tabs
+package com.marcos.mytasks.ui.home.tabs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,9 +16,9 @@ import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentDoingBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.domain.model.Task
-import com.marcos.mytasks.presentation.extension.showBottomSheet
-import com.marcos.mytasks.presentation.home.HomeFragmentDirections
-import com.marcos.mytasks.presentation.home.TaskAdapter
+import com.marcos.mytasks.ui.extension.showBottomSheet
+import com.marcos.mytasks.ui.home.HomeFragmentDirections
+import com.marcos.mytasks.ui.home.TaskAdapter
 
 class DoingFragment : Fragment() {
 

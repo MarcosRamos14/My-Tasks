@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.splash
+package com.marcos.mytasks.ui.splash
 
 import android.os.Bundle
 import android.os.Handler

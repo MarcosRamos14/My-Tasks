@@ -1,9 +1,8 @@
-package com.marcos.mytasks.presentation
+package com.marcos.mytasks.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.ActivityMainBinding

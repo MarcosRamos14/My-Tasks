@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.home
+package com.marcos.mytasks.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,9 +12,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentHomeBinding
-import com.marcos.mytasks.presentation.home.tabs.DoingFragment
-import com.marcos.mytasks.presentation.home.tabs.DoneFragment
-import com.marcos.mytasks.presentation.home.tabs.TodoFragment
+import com.marcos.mytasks.ui.home.tabs.DoingFragment
+import com.marcos.mytasks.ui.home.tabs.DoneFragment
+import com.marcos.mytasks.ui.home.tabs.TodoFragment
 
 class HomeFragment : Fragment() {
 

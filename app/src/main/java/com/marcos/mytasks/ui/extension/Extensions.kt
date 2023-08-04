@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.extension
+package com.marcos.mytasks.ui.extension
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity

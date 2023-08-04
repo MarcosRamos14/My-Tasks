@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.authorization
+package com.marcos.mytasks.ui.authorization
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRecoverAccountBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.presentation.extension.initToolbar
-import com.marcos.mytasks.presentation.extension.showBottomSheet
-import com.marcos.mytasks.presentation.utils.BaseFragment
+import com.marcos.mytasks.ui.extension.initToolbar
+import com.marcos.mytasks.ui.extension.showBottomSheet
+import com.marcos.mytasks.ui.utils.BaseFragment
 
 class RecoverAccountFragment : BaseFragment() {
 

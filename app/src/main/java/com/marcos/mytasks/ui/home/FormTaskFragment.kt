@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.home
+package com.marcos.mytasks.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentFormTaskBinding
 import com.marcos.mytasks.domain.model.Task
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.presentation.extension.initToolbar
-import com.marcos.mytasks.presentation.extension.showBottomSheet
-import com.marcos.mytasks.presentation.utils.BaseFragment
+import com.marcos.mytasks.ui.extension.initToolbar
+import com.marcos.mytasks.ui.extension.showBottomSheet
+import com.marcos.mytasks.ui.utils.BaseFragment
 
 class FormTaskFragment : BaseFragment() {
 

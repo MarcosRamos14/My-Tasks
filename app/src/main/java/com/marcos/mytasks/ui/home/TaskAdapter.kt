@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.home
+package com.marcos.mytasks.ui.home
 
 import android.content.Context
 import android.view.LayoutInflater

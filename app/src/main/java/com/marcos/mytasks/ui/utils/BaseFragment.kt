@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.utils
+package com.marcos.mytasks.ui.utils
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager

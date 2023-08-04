@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.marcos.mytasks.presentation.splash.SplashFragment"
+        android:name="com.marcos.mytasks.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.marcos.mytasks.presentation.home.HomeFragment"
+        android:name="com.marcos.mytasks.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -39,7 +39,7 @@
         app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/loginFragment"
-            android:name="com.marcos.mytasks.presentation.authorization.LoginFragment"
+            android:name="com.marcos.mytasks.ui.authorization.LoginFragment"
             android:label="fragment_login"
             tools:layout="@layout/fragment_login" >
             <action
@@ -51,12 +51,12 @@
         </fragment>
         <fragment
             android:id="@+id/registerFragment"
-            android:name="com.marcos.mytasks.presentation.authorization.RegisterFragment"
+            android:name="com.marcos.mytasks.ui.authorization.RegisterFragment"
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
         <fragment
             android:id="@+id/recoverAccountFragment"
-            android:name="com.marcos.mytasks.presentation.authorization.RecoverAccountFragment"
+            android:name="com.marcos.mytasks.ui.authorization.RecoverAccountFragment"
             android:label="fragment_recover_account"
             tools:layout="@layout/fragment_recover_account" />
         <action
@@ -67,7 +67,7 @@
     </navigation>
     <fragment
         android:id="@+id/formTaskFragment"
-        android:name="com.marcos.mytasks.presentation.home.FormTaskFragment"
+        android:name="com.marcos.mytasks.ui.home.FormTaskFragment"
         android:label="fragment_form_task"
         tools:layout="@layout/fragment_form_task" >
         <argument

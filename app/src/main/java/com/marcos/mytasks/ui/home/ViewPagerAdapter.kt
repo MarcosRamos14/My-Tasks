@@ -1,4 +1,4 @@
-package com.marcos.mytasks.presentation.home
+package com.marcos.mytasks.ui.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
