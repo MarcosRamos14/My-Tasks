@@ -10,13 +10,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- my colors -->
-    <color name="mr_color_primary">#DAEBD7</color>
+    <color name="mr_color_primary">#D8E9D5</color>
     <color name="mr_color_secondary">#C2E7EA</color>
 
     <color name="mr_color_black">#191919</color>
     <color name="mr_color_white">#FFFFFF</color>
     <color name="mr_color_ice">#FBFBFB</color>
-    <color name="mr_color_gray">#F7F7FA</color>
+    <color name="mr_color_gray">#DCDDE2</color>
 
     <color name="mr_color_delete">#FF4C3B</color>
     <color name="mr_color_edit">#03B6FC</color>

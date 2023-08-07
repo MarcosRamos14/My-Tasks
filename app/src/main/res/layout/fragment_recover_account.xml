@@ -1,88 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:layout_marginHorizontal="@dimen/_16dp"
     tools:context=".ui.authorization.RecoverAccountFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageButton
+        android:id="@+id/recover_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        android:background="@android:color/transparent"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recover_text_recover_account"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        android:fontFamily="@font/grotesk_bold"
+        android:text="@string/app_text_recover_account"
+        android:textAlignment="center"
+        android:textColor="@color/mr_color_black"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recover_btn_back" />
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <TextView
+        android:id="@+id/recover_text_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:fontFamily="@font/grotesk_bold"
+        android:text="@string/app_information_recover_account"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recover_text_recover_account" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/mr_color_default"
-                app:navigationIcon="@drawable/ic_back">
+    <TextView
+        android:id="@+id/recover_text_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_48dp"
+        android:fontFamily="@font/grotesk_regular"
+        android:text="@string/app_email"
+        android:textColor="@color/mr_color_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recover_text_information" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/app_recover_account"
-                    android:textColor="@color/white" />
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
+    <EditText
+        android:id="@+id/recover_edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:background="@drawable/bg_edit"
+        android:hint="@string/app_email_example"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/_16dp"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recover_text_email" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/match_constraints"
-            android:orientation="vertical"
-            android:padding="@dimen/_16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+    <Button
+        android:id="@+id/recover_btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:background="@drawable/bg_horizontal_button"
+        android:fontFamily="@font/grotesk_regular"
+        android:text="@string/app_send"
+        android:textAllCaps="false"
+        android:textColor="@color/mr_color_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_email"
-                android:textColor="@color/white" />
-
-            <EditText
-                android:id="@+id/edit_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8dp"
-                android:background="@drawable/bg_edit"
-                android:hint="@string/app_email_example"
-                android:inputType="textEmailAddress"
-                android:padding="@dimen/_16dp"
-                android:textSize="@dimen/_14sp" />
-
-            <Button
-                android:id="@+id/btn_send"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16dp"
-                android:background="@drawable/bg_button"
-                android:text="@string/app_send"
-                android:textAllCaps="false"
-                android:textColor="@color/mr_color_default"
-                app:backgroundTint="@null" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:indeterminateTint="@color/white"
-                android:paddingTop="@dimen/_8dp"
-                android:visibility="invisible"
-                tools:visibility="visible" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
