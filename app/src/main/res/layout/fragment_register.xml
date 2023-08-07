@@ -124,7 +124,7 @@
             android:textSize="@dimen/_14sp"/>
 
         <ImageView
-            android:id="@+id/image_password"
+            android:id="@+id/register_image_password"
             android:layout_width="@dimen/_24dp"
             android:layout_height="@dimen/_24dp"
             android:layout_marginEnd="@dimen/_16dp"
