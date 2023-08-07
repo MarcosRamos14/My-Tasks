@@ -20,7 +20,10 @@
     <string name="app_login">Entrar</string>
     <string name="app_login_alternative">Ou entre com</string>
     <string name="app_no_account">Você não tem cadastro ?</string>
-    <string name="app_create_account">Criar conta</string>
+    <string name="app_create_account">Criar Conta</string>
+    <string name="app_information_create_account">Vamos preencher os dados básicos da sua conta</string>
+    <string name="app_nome_account">Nome</string>
+    <string name="app_nome_account_example">Informe seu nome</string>
     <string name="app_recover_account">Esqueci minha senha</string>
     <string name="app_send">Enviar</string>
     <string name="app_message_email">Informe seu e-mail.</string>
