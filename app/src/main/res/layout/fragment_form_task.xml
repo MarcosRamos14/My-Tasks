@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/mr_color_default"
+            android:background="@color/mr_color_primary"
             app:navigationIcon="@drawable/ic_back">
 
             <TextView
@@ -120,10 +120,10 @@
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button"
+                android:background="@drawable/bg_horizontal_button"
                 android:text="@string/form_task_btn_save"
                 android:textAllCaps="false"
-                android:textColor="@color/mr_color_default"
+                android:textColor="@color/mr_color_primary"
                 android:layout_marginTop="@dimen/_16dp"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -145,5 +145,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

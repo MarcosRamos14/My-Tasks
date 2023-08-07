@@ -22,7 +22,7 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="@dimen/match_constraints"
                 android:layout_height="wrap_content"
-                android:background="@color/mr_color_default"
+                android:background="@color/mr_color_primary"
                 android:elevation="@dimen/match_constraints"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/img_btn_logout"

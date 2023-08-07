@@ -90,7 +90,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_edit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btn_edit"
-            tools:tint="@color/mr_color_default" />
+            tools:tint="@color/mr_color_primary" />
 
         <ImageButton
             android:id="@+id/img_btn_next"
@@ -102,7 +102,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/btn_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btn_edit"
-            tools:tint="@color/mr_color_default" />
+            tools:tint="@color/mr_color_primary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
