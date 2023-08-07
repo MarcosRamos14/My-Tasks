@@ -35,26 +35,25 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar(binding.toolbar)
         auth = Firebase.auth
         setupListener()
     }
 
     private fun setupListener() {
-        binding.btnRegister.setOnClickListener {
+        binding.registerBtnRegister.setOnClickListener {
             validateData()
         }
     }
 
     private fun validateData() {
-        val email = binding.editEmail.text.toString().trim()
-        val password = binding.editPassword.text.toString().trim()
+        val email = binding.registerEditEmail.text.toString().trim()
+        val password = binding.registerEditPassword.text.toString().trim()
 
         if (email.isNotEmpty()) {
 
             if (password.isNotEmpty()) {
                 hideKeyboard()
-                binding.progressBar.isVisible = true
+                binding.registerProgressBar.isVisible = true
                 registerUser(email, password)
             } else showBottomSheet(message = R.string.app_message_password)
 
@@ -72,7 +71,7 @@ class RegisterFragment : BaseFragment() {
                     showBottomSheet(
                         message = FirebaseHelper.validError(task.exception?.message ?: "")
                     )
-                    binding.progressBar.isVisible = false
+                    binding.registerProgressBar.isVisible = false
                 }
             }
     }

@@ -33,23 +33,22 @@ class RecoverAccountFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar(binding.toolbar)
         auth = Firebase.auth
         setupListener()
     }
 
     private fun setupListener() {
-        binding.btnSend.setOnClickListener {
+        binding.recoverBtnSend.setOnClickListener {
             validateData()
         }
     }
 
     private fun validateData() {
-        val email = binding.editEmail.text.toString().trim()
+        val email = binding.recoverEditEmail.text.toString().trim()
 
         if (email.isNotEmpty()) {
             hideKeyboard()
-            binding.progressBar.isVisible = true
+            binding.recoverProgressBar.isVisible = true
             recoverAccountUser(email)
         } else showBottomSheet(message = R.string.app_message_email)
     }
@@ -62,7 +61,7 @@ class RecoverAccountFragment : BaseFragment() {
                 } else showBottomSheet(
                     message = FirebaseHelper.validError(task.exception?.message ?: "")
                 )
-                binding.progressBar.isVisible = false
+                binding.recoverProgressBar.isVisible = false
             }
     }
 }

@@ -38,26 +38,26 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun setupListener() {
-        binding.btnLogin.setOnClickListener {
+        binding.loginBtnLogin.setOnClickListener {
             validateData()
         }
-        binding.btnRegister.setOnClickListener {
+        binding.loginBtnCreateAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
-        binding.btnRecover.setOnClickListener {
+        binding.loginBtnRecoverAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_recoverAccountFragment)
         }
     }
 
     private fun validateData() {
-        val email = binding.editEmail.text.toString().trim()
-        val password = binding.editPassword.text.toString().trim()
+        val email = binding.loginEditEmail.text.toString().trim()
+        val password = binding.loginEditPassword.text.toString().trim()
 
         if (email.isNotEmpty()) {
 
             if (password.isNotEmpty()) {
                 hideKeyboard()
-                binding.progressBar.isVisible = true
+                binding.loginProgressBar.isVisible = true
                 loginUser(email, password)
             } else showBottomSheet(message = R.string.app_message_password)
 
@@ -73,7 +73,7 @@ class LoginFragment : BaseFragment() {
                     showBottomSheet(
                         message = FirebaseHelper.validError(task.exception?.message ?: "")
                     )
-                    binding.progressBar.isVisible = false
+                    binding.loginProgressBar.isVisible = false
                 }
             }
     }

@@ -69,18 +69,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recover_text_email" />
 
-    <Button
-        android:id="@+id/recover_btn_send"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_16dp"
-        android:background="@drawable/bg_horizontal_button"
-        android:fontFamily="@font/grotesk_regular"
-        android:text="@string/app_send"
-        android:textAllCaps="false"
-        android:textColor="@color/mr_color_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/recover_btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_horizontal_button"
+            android:fontFamily="@font/grotesk_regular"
+            android:text="@string/app_send"
+            android:textAllCaps="false"
+            android:textColor="@color/mr_color_black" />
+
+        <ProgressBar
+            android:id="@+id/recover_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateTint="@color/mr_color_gray"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
