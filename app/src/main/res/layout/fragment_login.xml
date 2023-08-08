@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:layout_marginHorizontal="@dimen/_16dp"
-    tools:context=".ui.authorization.LoginFragment">
+    tools:context=".ui.authorization.login.LoginFragment">
 
     <TextView
         android:id="@+id/login_text_sign_in"
@@ -69,13 +69,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_edit_email" />
 
-    <RelativeLayout
-        android:id="@+id/relative_password"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_text_input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8dp"
+        app:boxStrokeWidth="@dimen/match_constraints"
+        app:boxStrokeWidthFocused="@dimen/match_constraints"
+        app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_text_password">
+        app:layout_constraintTop_toBottomOf="@+id/login_text_password"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/login_edit_password"
@@ -87,30 +91,18 @@
             android:padding="@dimen/_16dp"
             android:textSize="@dimen/_14sp" />
 
-        <ImageView
-            android:id="@+id/login_image_password"
-            android:layout_width="@dimen/_24dp"
-            android:layout_height="@dimen/_24dp"
-            android:layout_marginEnd="@dimen/_16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:importantForAccessibility="no"
-            android:adjustViewBounds="true"
-            tools:srcCompat="@drawable/ic_password_invisible"
-            app:tint="@color/mr_color_black" />
-
-    </RelativeLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/login_btn_recover_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8dp"
-        android:fontFamily="@font/grotesk_regular"
+        android:fontFamily="@font/grotesk_bold"
         android:text="@string/app_recover_account"
         android:textColor="@color/mr_color_black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relative_password" />
+        app:layout_constraintTop_toBottomOf="@+id/login_text_input_password" />
 
     <FrameLayout
         android:id="@+id/frame_sing_in"

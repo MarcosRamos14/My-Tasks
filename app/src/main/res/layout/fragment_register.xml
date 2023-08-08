@@ -106,12 +106,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_edit_email" />
 
-    <RelativeLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_text_password">
+        app:layout_constraintTop_toBottomOf="@+id/register_text_password"
+        app:boxStrokeWidth="@dimen/match_constraints"
+        app:boxStrokeWidthFocused="@dimen/match_constraints"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/register_edit_password"
@@ -123,19 +127,7 @@
             android:padding="@dimen/_16dp"
             android:textSize="@dimen/_14sp"/>
 
-        <ImageView
-            android:id="@+id/register_image_password"
-            android:layout_width="@dimen/_24dp"
-            android:layout_height="@dimen/_24dp"
-            android:layout_marginEnd="@dimen/_16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:importantForAccessibility="no"
-            android:adjustViewBounds="true"
-            tools:srcCompat="@drawable/ic_password_invisible"
-            app:tint="@color/mr_color_black" />
-
-    </RelativeLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

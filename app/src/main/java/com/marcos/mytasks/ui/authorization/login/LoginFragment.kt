@@ -1,4 +1,4 @@
-package com.marcos.mytasks.ui.authorization
+package com.marcos.mytasks.ui.authorization.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
