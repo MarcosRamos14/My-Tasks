@@ -12,6 +12,10 @@ def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
+def webClientIdPropertiesFile = rootProject.file("webclientid.properties")
+def webClientIdProperties = new Properties()
+webClientIdProperties.load(new FileInputStream(webClientIdPropertiesFile))
+
 android {
     namespace 'com.marcos.mytasks'
     compileSdk 33
@@ -33,6 +37,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "WEB_CLIENT_ID", webClientIdProperties['WEB_CLIENT_ID']
     }
 
     buildTypes {
@@ -78,6 +84,7 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$google_firebase_bom")
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation "com.google.android.gms:play-services-auth:$google_firebase_play_service"
     implementation 'com.google.firebase:firebase-database-ktx'
 
     // Glide
