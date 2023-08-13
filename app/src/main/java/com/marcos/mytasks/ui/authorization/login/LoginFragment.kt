@@ -4,43 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentLoginBinding
-import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.ui.extension.showBottomSheet
 import com.marcos.mytasks.ui.utils.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var auth: FirebaseAuth
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentLoginBinding.inflate(
-        inflater,
-        container,
-        false
-    ).apply {
+    ) = FragmentLoginBinding.inflate(inflater, container, false).apply {
         binding = this
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = Firebase.auth
         setupListener()
+        setupListenerLoginUser()
+        observerLoginUserUiState()
     }
 
     private fun setupListener() {
-        binding.loginBtnLogin.setOnClickListener {
-            validateData()
-        }
         binding.loginBtnCreateAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
@@ -49,32 +41,34 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    private fun validateData() {
+    private fun setupListenerLoginUser() {
+        binding.loginBtnLogin.setOnClickListener {
+            validateFieldForLogin()
+        }
+    }
+
+    private fun validateFieldForLogin() {
         val email = binding.loginEditEmail.text.toString().trim()
         val password = binding.loginEditPassword.text.toString().trim()
 
         if (email.isNotEmpty()) {
-
             if (password.isNotEmpty()) {
                 hideKeyboard()
-                binding.loginProgressBar.isVisible = true
-                loginUser(email, password)
+                viewModel.loginUser(email, password)
             } else showBottomSheet(message = R.string.app_message_password)
-
         } else showBottomSheet(message = R.string.app_message_email)
     }
 
-    private fun loginUser(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
+    private fun observerLoginUserUiState() {
+        viewModel.state.observe(viewLifecycleOwner) { uiState ->
+            when (uiState) {
+                is LoginViewModel.UiState.Success -> {
                     findNavController().navigate(R.id.action_global_homeFragment)
-                } else {
-                    showBottomSheet(
-                        message = FirebaseHelper.validError(task.exception?.message ?: "")
-                    )
-                    binding.loginProgressBar.isVisible = false
+                }
+                is LoginViewModel.UiState.Error -> {
+                    showBottomSheet(message = uiState.errorMessage)
                 }
             }
+        }
     }
 }
