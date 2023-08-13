@@ -3,8 +3,10 @@ package com.marcos.mytasks.ui.utils
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 
 // oculta teclado
+@AndroidEntryPoint
 open class BaseFragment : Fragment() {
 
     fun hideKeyboard() {
