@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.marcos.mytasks.domain.usecase.GetLoginUserUseCase
+import com.marcos.mytasks.domain.usecase.SignInGoogleUseCase
 import com.marcos.mytasks.domain.usecase.base.CoroutinesDispatchers
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.ui.extension.watchStatus
@@ -16,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val dispatchers: CoroutinesDispatchers,
-    private val getLoginUserUseCase: GetLoginUserUseCase
+    private val getLoginUserUseCase: GetLoginUserUseCase,
+    private val signInGoogleUseCase: SignInGoogleUseCase
 ) : ViewModel() {
 
     private val action = MutableLiveData<Action>()
@@ -29,7 +32,22 @@ class LoginViewModel @Inject constructor(
                     ).watchStatus(
                         success = { user -> emit(UiState.Success(user)) },
                         error = { error ->
-                            emit(UiState.Error(
+                            emit(
+                                UiState.Error(
+                                    errorMessage = FirebaseHelper.validError(error.message ?: "")
+                                )
+                            )
+                        }
+                    )
+                }
+                is Action.SignInGoogle -> {
+                    signInGoogleUseCase.invoke(
+                        SignInGoogleUseCase.Params(it.credential)
+                    ).watchStatus(
+                        success = { google -> emit(UiState.Success(google)) },
+                        error = { error ->
+                            emit(
+                                UiState.Error(
                                     errorMessage = FirebaseHelper.validError(error.message ?: "")
                                 )
                             )
@@ -44,6 +62,10 @@ class LoginViewModel @Inject constructor(
         action.value = Action.LoginUser(email, password)
     }
 
+    fun signInGoogle(credential: AuthCredential) {
+        action.value = Action.SignInGoogle(credential)
+    }
+
     sealed class UiState {
         data class Success(val user: AuthResult) : UiState()
         data class Error(val errorMessage: Int) : UiState()
@@ -51,5 +73,6 @@ class LoginViewModel @Inject constructor(
 
     sealed class Action {
         data class LoginUser(val email: String, val password: String) : Action()
+        data class SignInGoogle(val credential: AuthCredential) : Action()
     }
 }
