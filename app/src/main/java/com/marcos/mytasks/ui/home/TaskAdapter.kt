@@ -8,12 +8,12 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.ItemAdapterBinding
-import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.domain.models.TaskDTO
 
 class TaskAdapter(
     private val context: Context,
-    private val taskList: List<Task>,
-    val taskSelected: (Task, Int) -> Unit
+    private val taskList: List<TaskDTO>,
+    val taskSelected: (TaskDTO, Int) -> Unit
 ) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

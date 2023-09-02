@@ -10,17 +10,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentFormTaskBinding
-import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.domain.models.TaskDTO
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
 import com.marcos.mytasks.ui.extension.initToolbar
 import com.marcos.mytasks.ui.extension.showBottomSheet
+import com.marcos.mytasks.ui.extension.showShortToast
 import com.marcos.mytasks.ui.utils.BaseFragment
 
 class FormTaskFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFormTaskBinding
     private val args: FormTaskFragmentArgs by navArgs()
-    private lateinit var task: Task
+    private lateinit var task: TaskDTO
     private var newTask: Boolean = true
     private var statusTask: Int = STATUS_TASK_TODO
 
@@ -70,14 +71,16 @@ class FormTaskFragment : BaseFragment() {
     }
 
     private fun setupListener() {
-        binding.btnSave.setOnClickListener {
-            validateData()
-        }
-        binding.radioGroup.setOnCheckedChangeListener { _, id ->
-            statusTask = when (id) {
-                R.id.rdo_btn_todo -> STATUS_TASK_TODO
-                R.id.rdo_btn_doing -> STATUS_TASK_DOING
-                else -> STATUS_TASK_DONE
+        with(binding) {
+            btnSave.setOnClickListener {
+                validateData()
+            }
+            radioGroup.setOnCheckedChangeListener { _, id ->
+                statusTask = when (id) {
+                    R.id.rdo_btn_todo -> STATUS_TASK_TODO
+                    R.id.rdo_btn_doing -> STATUS_TASK_DOING
+                    else -> STATUS_TASK_DONE
+                }
             }
         }
     }
@@ -87,11 +90,9 @@ class FormTaskFragment : BaseFragment() {
         if (description.isNotEmpty()) {
             hideKeyboard()
             binding.progressBar.isVisible = true
-
-            if (newTask) task = Task()
+            if (newTask) task = TaskDTO()
             task.description = description
             task.status = statusTask
-
             saveTask()
         } else showBottomSheet(message = R.string.generic_error_description)
     }
@@ -105,20 +106,14 @@ class FormTaskFragment : BaseFragment() {
             .setValue(task)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-
                     if (newTask) {
                         findNavController().popBackStack()
-                        Toast.makeText(
-                            requireContext(), R.string.generic_salve_task_success, Toast.LENGTH_SHORT
-                        ).show()
+                        showShortToast(R.string.generic_salve_task_success)
                     } else { // edit task
                         binding.progressBar.isVisible = false
-                        Toast.makeText(
-                            requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
-                        ).show()
+                        showShortToast(R.string.generic_att_task_success)
                     }
                 } else showBottomSheet(message = R.string.generic_salve_task_error)
-
             }.addOnFailureListener {
                 binding.progressBar.isVisible = false
                 showBottomSheet(message = R.string.generic_salve_task_error)

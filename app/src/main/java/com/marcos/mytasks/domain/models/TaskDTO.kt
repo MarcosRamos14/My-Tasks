@@ -1,4 +1,4 @@
-package com.marcos.mytasks.domain.model
+package com.marcos.mytasks.domain.models
 
 import android.os.Parcelable
 import androidx.annotation.Keep
@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Keep
 @Parcelize
-data class Task(
+data class TaskDTO(
     var id: String = "",
     var description: String = "",
     var status: Int = 0

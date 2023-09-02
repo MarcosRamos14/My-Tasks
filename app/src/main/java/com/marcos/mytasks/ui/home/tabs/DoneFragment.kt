@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,15 +14,16 @@ import com.google.firebase.database.ValueEventListener
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentDoneBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.domain.model.Task
+import com.marcos.mytasks.domain.models.TaskDTO
 import com.marcos.mytasks.ui.extension.showBottomSheet
+import com.marcos.mytasks.ui.extension.showShortToast
 import com.marcos.mytasks.ui.home.HomeFragmentDirections
 import com.marcos.mytasks.ui.home.TaskAdapter
 
 class DoneFragment : Fragment() {
 
     private lateinit var binding: FragmentDoneBinding
-    private val taskList = mutableListOf<Task>()
+    private val taskList = mutableListOf<TaskDTO>()
     private lateinit var taskAdapter: TaskAdapter
 
     override fun onCreateView(
@@ -48,19 +48,17 @@ class DoneFragment : Fragment() {
             .child(getString(R.string.form_task))
             .child(FirebaseHelper.getIdUser() ?: getString(R.string.empty_string))
             .addValueEventListener(object : ValueEventListener {
+
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         taskList.clear()
-
                         for (snap in snapshot.children) {
-                            val task = snap.getValue(Task::class.java) as Task
-                            if (task.status == STATUS_TASK_DONE) taskList.add(task)
+                            val taskDTO = snap.getValue(TaskDTO::class.java) as TaskDTO
+                            if (taskDTO.status == STATUS_TASK_DONE) taskList.add(taskDTO)
                         }
-
                         taskList.reverse()
                         initAdapter()
                     }
-
                     taskEmpty()
                     binding.progressBar.isVisible = false
                 }
@@ -78,20 +76,21 @@ class DoneFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        binding.recyclerHome.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerHome.setHasFixedSize(true)
-        taskAdapter = TaskAdapter(requireContext(), taskList) { task, select ->
-            optionSelect(task, select)
+        with(binding) {
+            recyclerHome.layoutManager = LinearLayoutManager(requireContext())
+            recyclerHome.setHasFixedSize(true)
+            taskAdapter = TaskAdapter(requireContext(), taskList) { task, select ->
+                optionSelect(task, select)
+            }
+            recyclerHome.adapter = taskAdapter
         }
-        binding.recyclerHome.adapter = taskAdapter
     }
 
-    private fun optionSelect(task: Task, select: Int) {
+    private fun optionSelect(task: TaskDTO, select: Int) {
         when (select) {
             TaskAdapter.SELECT_REMOVE -> deleteTask(task)
             TaskAdapter.SELECT_EDIT -> {
-                val action = HomeFragmentDirections
-                    .actionHomeFragmentToFormTaskFragment(task)
+                val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(task)
                 findNavController().navigate(action)
             }
             TaskAdapter.SELECT_BACK -> {
@@ -101,7 +100,7 @@ class DoneFragment : Fragment() {
         }
     }
 
-    private fun updateTask(task: Task) {
+    private fun updateTask(task: TaskDTO) {
         FirebaseHelper
             .getDatabase()
             .child(getString(R.string.form_task))
@@ -110,18 +109,15 @@ class DoneFragment : Fragment() {
             .setValue(task)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(
-                        requireContext(), R.string.generic_att_task_success, Toast.LENGTH_SHORT
-                    ).show()
+                    showShortToast(R.string.generic_att_task_success)
                 } else showBottomSheet(message = R.string.generic_salve_task_error)
-
             }.addOnFailureListener {
                 binding.progressBar.isVisible = false
                 showBottomSheet(message = R.string.generic_salve_task_error)
             }
     }
 
-    private fun deleteTask(task: Task) {
+    private fun deleteTask(task: TaskDTO) {
         FirebaseHelper
             .getDatabase()
             .child(getString(R.string.form_task))

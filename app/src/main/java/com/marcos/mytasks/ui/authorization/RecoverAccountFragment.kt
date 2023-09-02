@@ -11,7 +11,6 @@ import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRecoverAccountBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.ui.extension.initToolbar
 import com.marcos.mytasks.ui.extension.showBottomSheet
 import com.marcos.mytasks.ui.utils.BaseFragment
 
@@ -45,7 +44,6 @@ class RecoverAccountFragment : BaseFragment() {
 
     private fun validateData() {
         val email = binding.recoverEditEmail.text.toString().trim()
-
         if (email.isNotEmpty()) {
             hideKeyboard()
             binding.recoverProgressBar.isVisible = true

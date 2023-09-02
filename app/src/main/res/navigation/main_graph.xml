@@ -72,7 +72,7 @@
         tools:layout="@layout/fragment_form_task" >
         <argument
             android:name="task"
-            app:argType="com.marcos.mytasks.domain.model.Task"
+            app:argType="com.marcos.mytasks.domain.models.TaskDTO"
             app:nullable="true" />
     </fragment>
 </navigation>

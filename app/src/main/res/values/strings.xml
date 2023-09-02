@@ -48,6 +48,9 @@
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
 
+    <string name="google_error_login">Erro ao tentar fazer login com a conta do Google</string>
+    <string name="google_login_cancelled">Login cancelado</string>
+
     <!-- Form Task -->
     <string name="form_task_txt_title_new">Nova tarefa</string>
     <string name="form_task_txt_title_edit">Editar tarefa</string>

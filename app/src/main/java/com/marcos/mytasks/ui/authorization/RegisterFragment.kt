@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -13,8 +12,8 @@ import com.google.firebase.ktx.Firebase
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRegisterBinding
 import com.marcos.mytasks.framework.firebase.FirebaseHelper
-import com.marcos.mytasks.ui.extension.initToolbar
 import com.marcos.mytasks.ui.extension.showBottomSheet
+import com.marcos.mytasks.ui.extension.showShortToast
 import com.marcos.mytasks.ui.utils.BaseFragment
 
 class RegisterFragment : BaseFragment() {
@@ -50,13 +49,11 @@ class RegisterFragment : BaseFragment() {
         val password = binding.registerEditPassword.text.toString().trim()
 
         if (email.isNotEmpty()) {
-
             if (password.isNotEmpty()) {
                 hideKeyboard()
                 binding.registerProgressBar.isVisible = true
                 registerUser(email, password)
             } else showBottomSheet(message = R.string.app_message_password)
-
         } else showBottomSheet(message = R.string.app_message_email)
     }
 
@@ -65,8 +62,7 @@ class RegisterFragment : BaseFragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_global_homeFragment)
-                    Toast.makeText(requireContext(), R.string.app_toast_create, Toast.LENGTH_SHORT)
-                        .show()
+                    showShortToast(R.string.app_toast_create)
                 } else {
                     showBottomSheet(
                         message = FirebaseHelper.validError(task.exception?.message ?: "")
