@@ -17,4 +17,8 @@ class AuthRemoteDataSourceImpl @Inject constructor(
     override suspend fun signInGoogle(credential: AuthCredential): AuthResult {
         return firebaseAuth.signInWithCredential(credential).await()
     }
+
+    override suspend fun signOut() {
+        return firebaseAuth.signOut()
+    }
 }

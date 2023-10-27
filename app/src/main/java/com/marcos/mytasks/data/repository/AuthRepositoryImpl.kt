@@ -16,4 +16,8 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun signInGoogle(credential: AuthCredential): AuthResult {
         return authRemoteDataSource.signInGoogle(credential)
     }
+
+    override suspend fun signOut() {
+        return authRemoteDataSource.signOut()
+    }
 }

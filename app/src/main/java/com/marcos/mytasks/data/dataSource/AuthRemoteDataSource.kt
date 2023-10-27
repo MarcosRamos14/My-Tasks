@@ -8,4 +8,6 @@ interface AuthRemoteDataSource {
     suspend fun loginUser(email: String, password: String) : AuthResult
 
     suspend fun signInGoogle(credential: AuthCredential) : AuthResult
+
+    suspend fun signOut()
 }

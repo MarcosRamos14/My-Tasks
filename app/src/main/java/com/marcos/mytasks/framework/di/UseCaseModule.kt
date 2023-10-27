@@ -4,6 +4,8 @@ import com.marcos.mytasks.domain.usecase.GetLoginUserUseCase
 import com.marcos.mytasks.domain.usecase.GetLoginUserUseCaseImpl
 import com.marcos.mytasks.domain.usecase.SignInGoogleUseCase
 import com.marcos.mytasks.domain.usecase.SignInGoogleUseCaseImpl
+import com.marcos.mytasks.domain.usecase.SignOutUseCase
+import com.marcos.mytasks.domain.usecase.SignOutUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,4 +20,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindsSignInGoogleUseCase(useCase: SignInGoogleUseCaseImpl) : SignInGoogleUseCase
+
+    @Binds
+    fun bindsSignOutUseCase(useCase: SignOutUseCaseImpl) : SignOutUseCase
 }
