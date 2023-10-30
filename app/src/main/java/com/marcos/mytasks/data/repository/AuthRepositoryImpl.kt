@@ -20,4 +20,8 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun signOut() {
         return authRemoteDataSource.signOut()
     }
+
+    override suspend fun recoverAccount(email: String) {
+        return authRemoteDataSource.recoverAccount(email)
+    }
 }

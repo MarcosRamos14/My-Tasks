@@ -1,44 +1,44 @@
-package com.marcos.mytasks.ui.authorization
+package com.marcos.mytasks.ui.authorization.recoverAccount
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.marcos.mytasks.R
 import com.marcos.mytasks.databinding.FragmentRecoverAccountBinding
-import com.marcos.mytasks.framework.firebase.FirebaseHelper
+import com.marcos.mytasks.ui.authorization.recoverAccount.RecoverAccountViewModel.UiState
 import com.marcos.mytasks.ui.extension.showBottomSheet
 import com.marcos.mytasks.ui.utils.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecoverAccountFragment : BaseFragment() {
 
     private lateinit var binding: FragmentRecoverAccountBinding
-    private lateinit var auth: FirebaseAuth
+    private val viewModel: RecoverAccountViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentRecoverAccountBinding.inflate(
-        inflater,
-        container,
-        false
-    ).apply {
+    ) = FragmentRecoverAccountBinding.inflate(inflater, container, false).apply {
         binding = this
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = Firebase.auth
         setupListener()
+        observerRecoverAccountUiState()
     }
 
     private fun setupListener() {
         binding.recoverBtnSend.setOnClickListener {
             validateData()
+        }
+        binding.recoverBtnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
@@ -47,19 +47,20 @@ class RecoverAccountFragment : BaseFragment() {
         if (email.isNotEmpty()) {
             hideKeyboard()
             binding.recoverProgressBar.isVisible = true
-            recoverAccountUser(email)
+            viewModel.recoverAccount(email)
         } else showBottomSheet(message = R.string.app_message_email)
     }
 
-    private fun recoverAccountUser(email: String) {
-        auth.sendPasswordResetEmail(email)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    showBottomSheet(message = R.string.app_message_recover)
-                } else showBottomSheet(
-                    message = FirebaseHelper.validError(task.exception?.message ?: "")
-                )
-                binding.recoverProgressBar.isVisible = false
+    private fun observerRecoverAccountUiState() {
+        viewModel.state.observe(viewLifecycleOwner) { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    showBottomSheet(message = uiState.successMessage)
+                }
+                is UiState.Error -> {
+                    showBottomSheet(message = uiState.errorMessage)
+                }
             }
+        }
     }
 }

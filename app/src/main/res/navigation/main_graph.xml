@@ -56,7 +56,7 @@
             tools:layout="@layout/fragment_register" />
         <fragment
             android:id="@+id/recoverAccountFragment"
-            android:name="com.marcos.mytasks.ui.authorization.RecoverAccountFragment"
+            android:name="com.marcos.mytasks.ui.authorization.recoverAccount.RecoverAccountFragment"
             android:label="fragment_recover_account"
             tools:layout="@layout/fragment_recover_account" />
         <action

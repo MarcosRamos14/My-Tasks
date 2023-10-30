@@ -21,4 +21,8 @@ class AuthRemoteDataSourceImpl @Inject constructor(
     override suspend fun signOut() {
         return firebaseAuth.signOut()
     }
+
+    override suspend fun recoverAccount(email: String) {
+        firebaseAuth.sendPasswordResetEmail(email)
+    }
 }

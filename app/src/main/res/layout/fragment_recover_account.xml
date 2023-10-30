@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="@dimen/_16dp"
-    tools:context=".ui.authorization.RecoverAccountFragment">
+    tools:context=".ui.authorization.recoverAccount.RecoverAccountFragment">
 
     <ImageButton
         android:id="@+id/recover_btn_back"

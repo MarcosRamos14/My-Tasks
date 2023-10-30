@@ -35,5 +35,9 @@ class FirebaseHelper {
                 }
             }
         }
+
+        fun validSuccess() : Int {
+            return R.string.app_message_recover
+        }
     }
 }

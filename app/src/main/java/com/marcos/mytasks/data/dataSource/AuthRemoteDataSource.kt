@@ -10,4 +10,6 @@ interface AuthRemoteDataSource {
     suspend fun signInGoogle(credential: AuthCredential) : AuthResult
 
     suspend fun signOut()
+
+    suspend fun recoverAccount(email: String)
 }

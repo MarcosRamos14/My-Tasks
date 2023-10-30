@@ -2,6 +2,8 @@ package com.marcos.mytasks.framework.di
 
 import com.marcos.mytasks.domain.usecase.GetLoginUserUseCase
 import com.marcos.mytasks.domain.usecase.GetLoginUserUseCaseImpl
+import com.marcos.mytasks.domain.usecase.RecoverAccountUseCase
+import com.marcos.mytasks.domain.usecase.RecoverAccountUseCaseImpl
 import com.marcos.mytasks.domain.usecase.SignInGoogleUseCase
 import com.marcos.mytasks.domain.usecase.SignInGoogleUseCaseImpl
 import com.marcos.mytasks.domain.usecase.SignOutUseCase
@@ -23,4 +25,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindsSignOutUseCase(useCase: SignOutUseCaseImpl) : SignOutUseCase
+
+    @Binds
+    fun bindsRecoverAccountUseCase(useCase: RecoverAccountUseCaseImpl) : RecoverAccountUseCase
 }
