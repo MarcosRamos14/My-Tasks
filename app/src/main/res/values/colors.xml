@@ -6,10 +6,17 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="black_default">#757575</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- my colors -->
-    <color name="mr_color_default">#03B6FC</color>
+    <color name="mr_color_primary">#D8E9D5</color>
+    <color name="mr_color_secondary">#C2E7EA</color>
+
+    <color name="mr_color_black">#191919</color>
+    <color name="mr_color_white">#FFFFFF</color>
+    <color name="mr_color_ice">#FBFBFB</color>
+    <color name="mr_color_gray">#DCDDE2</color>
 
     <color name="mr_color_delete">#FF4C3B</color>
     <color name="mr_color_edit">#03B6FC</color>

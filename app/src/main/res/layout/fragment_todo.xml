@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.tabs.TodoFragment">
+    tools:context=".ui.home.tabs.TodoFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_home"
@@ -55,6 +55,6 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/mr_color_default" />
+        app:tint="@color/mr_color_primary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

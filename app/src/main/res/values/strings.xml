@@ -11,13 +11,22 @@
     <string name="generic_description">Este texto serve como exemplo</string>
 
     <!-- App Authorization -->
+    <string name="app_text_sign_in">Vamos começar ?</string>
+    <string name="app_text_welcome">Oi! Bem-vindo de volta, você fez falta</string>
     <string name="app_email">E-mail</string>
     <string name="app_password">Senha</string>
-    <string name="app_email_example">email@email.com</string>
-    <string name="app_password_example">******</string>
-    <string name="app_login">Login</string>
-    <string name="app_create_account">Criar conta</string>
-    <string name="app_recover_account">Recuperar conta</string>
+    <string name="app_email_example">exemplo@gmail.com</string>
+    <string name="app_password_example">**********</string>
+    <string name="app_login">Entrar</string>
+    <string name="app_login_alternative">Ou entre com</string>
+    <string name="app_no_account">Você não tem cadastro ?</string>
+    <string name="app_create_account">Criar Conta</string>
+    <string name="app_information_create_account">Vamos preencher os dados básicos da sua conta</string>
+    <string name="app_nome_account">Nome</string>
+    <string name="app_nome_account_example">Informe seu nome</string>
+    <string name="app_recover_account">Esqueci minha senha</string>
+    <string name="app_text_recover_account">Recuperar Conta</string>
+    <string name="app_information_recover_account">Insira o seu endereço de e-mail para recuperar sua conta</string>
     <string name="app_send">Enviar</string>
     <string name="app_message_email">Informe seu e-mail.</string>
     <string name="app_message_password">Informe sua senha.</string>
@@ -38,6 +47,9 @@
     <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+
+    <string name="google_error_login">Erro ao tentar fazer login com a conta do Google</string>
+    <string name="google_login_cancelled">Login cancelado</string>
 
     <!-- Form Task -->
     <string name="form_task_txt_title_new">Nova tarefa</string>
